@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birth Day</title>
+    <style>
+       body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .birthday-card {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s;
+        }
+
+        .birthday-card h1 {
+            font-size: 2.5em;
+            color: #ff6f61;
+        }
+
+        .birthday-card p {
+            font-size: 1.2em;
+            color: #333;
+            transition: opacity 0.5s;
+            opacity: 0; /* Ẩn ban đầu */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ff4a4a;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+            animation: floatBalloons 6s ease-in-out infinite;
+        }
+
+        #balloon1 { left: 10%; animation-delay: 0s; }
+        #balloon2 { left: 30%; animation-delay: 2s; }
+        #balloon3 { left: 50%; animation-delay: 4s; }
+        #balloon4 { left: 70%; animation-delay: 6s; }
+        #balloon5 { left: 90%; animation-delay: 8s; }
+
+        @keyframes floatBalloons {
+            0% { bottom: -100px; }
+            50% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+
+        .decoration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0; /* Ẩn ban đầu */
+            transition: opacity 1s;
+        }
+
+        .decoration.show {
+            opacity: 1; /* Hiển thị khi có lớp show */
+        }
+
+        .banner {
+            font-size: 2em;
+            color: #fff;
+            background: #ff6f61;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .cake {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            margin-top: 50px; /* Adjust as needed */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .tier {
+            position: absolute;
+            background: #ffcc99;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .top-tier {
+            width: 150px;
+            height: 100px;
+            z-index: 2;
+        }
+
+        .bottom-tier {
+            width: 200px;
+            height: 150px;
+            z-index: 1;
+        }
+
+        .tier::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: #ff9966;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .tier::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110%;
+            height: 40px;
+            background: #ff9966;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .candle {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100px;
+            background: #dcdcdc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .flame {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(circle, yellow 0%, orange 60%, red 100%);
+            border-radius: 50%;
+            animation: flicker 1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
+        .flowers {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px; /* Adjust as needed */
+        }
+
+        .bouquet {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 180px;
+            height: 180px;
+        }
+
+        .stem {
+            width: 6px;
+            height: 100px;
+            background: green;
+            margin: 5px 0;
+            position: relative;
+        }
+
+        .flower {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: pink;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flower::before, .flower::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: pink;
+            border-radius: 50%;
+        }
+
+        .flower::before {
+            transform: rotate(45deg);
+        }
+
+        .flower::after {
+            transform: rotate(-45deg);
+        }
+
+        .center {
+            width: 10px;
+            height: 10px;
+            background: yellow;
+            border-radius: 50%;
+        }
+
+        .leaves {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            background: green;
+            border-radius: 50%;
+        }
+
+        .leaves::before, .leaves::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background: green;
+            border-radius: 50%;
+        }
+
+        .leaves::before {
+            transform: rotate(45deg);
+            top: -5px;
+            left: -10px;
+        }
+
+        .leaves::after {
+            transform: rotate(-45deg);
+            top: -5px;
+            right: -10px;
+        }
+
+        .gift {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin-top: 50px; /* Adjust as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ribbon {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff6666;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #ccff99;
+            position: relative;
+            border: 4px solid #ff6666;
+            box-sizing: border-box;
+        }
+
+        .lid {
+            width: 100%;
+            height: 50px;
+            background: #ccff99;
+            position: absolute;
+            top: -50px;
+            left: 0;
+            border-bottom: 4px solid #ff6666;
+            box-sizing: border-box;
+        }
+
+        .base {
+            width: 100%;
+            height: 50px;
+            background: #ccff99;
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            border-top: 4px solid #ff6666;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .birthday-card h1 {
+                font-size: 2em;
+            }
+
+            .birthday-card p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloons">
+        <div class="balloon" id="balloon1"></div>
+        <div class="balloon" id="balloon2"></div>
+        <div class="balloon" id="balloon3"></div>
+        <div class="balloon" id="balloon4"></div>
+        <div class="balloon" id="balloon5"></div>
+    </div>
+
+    <div class="container">
+        <div class="birthday-card">
+            <h1>Chúc mừng sinh nhất</h1> 
+            <p>Chúc mừng sinh nhất chị! Em chúc chị luôn vui vẻ, hạnh phúc và thành công trong cuộc sống và việc học. Chúc chị sinh nhật vui vẻ!</p>
+            <button id="next">Xem thêm lời chúc</button>
+        </div>
+    </div>
+
+    <div class="decoration">
+        <div class="banner">Happy Birthday</div>
+        <div class="cake">
+            <div class="tier bottom-tier">
+                <div class="flame"></div>
+            </div>
+            <div class="tier top-tier"></div>
+        </div>
+        <div class="flowers">
+            <div class="bouquet">
+                <div class="stem">
+                    <div class="flower">
+                        <div class="center"></div>
+                    </div>
+                    <div class="leaves"></div>
+                </div>
+                <div class="stem">
+                    <div class="flower">
+                        <div class="center"></div>
+                    </div>
+                    <div class="leaves"></div>
+                </div>
+                <div class="stem">
+                    <div class="flower">
+                        <div class="center"></div>
+                    </div>
+                    <div class="leaves"></div>
+                </div>
+            </div>
+        </div>
+        <div class="gift">
+            <div class="ribbon"></div>
+            <div class="box">
+                <div class="lid"></div>
+                <div class="base"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio element for background music -->
+    <audio id="background-music" loop autoplay>
+        <source src="path/to/your/music.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+    
+    <script>
+        const messages = [
+            "Chúc chị luôn xinh đẹp và rạng rỡ như những bông hoa mùa xuân.",
+            "Mong rằng mọi ước mơ của chị sẽ trở thành hiện thực.",
+            "Nếu có khó khăn mong rằng chị vẫn sẽ cố gắng vượt qua",
+            "Chúc chị có một ngày sinh nhật thật đặc biệt và đáng nhớ.",
+            "Chúc chị luôn hạnh phúc và vui vẻ."
+        ];
+
+        let currentMessageIndex = 0;
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            const card = document.querySelector('.birthday-card p');
+            card.style.opacity = 0;
+            setTimeout(() => {
+                card.textContent = messages[currentMessageIndex];
+                card.style.opacity = 1;
+            }, 500);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('background-music');
+            music.play();
+        });
+    </script>
+
+</body>
+</html>
